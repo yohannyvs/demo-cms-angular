@@ -1,0 +1,108 @@
+<!--===========================================
+=            Login				              =
+============================================-->
+
+<section *ngIf="!identificado" id="login">
+	
+	<form #formIngreso="ngForm" (ngSubmit)="onSubmit()">
+		
+		<h1>LOGIN</h1>
+
+		<hr>
+
+		<span *ngIf="usuario.touched && !usuario.valid" [ngStyle]="{'color':'red','font-size':'14px','margin':'20px'}">
+			*Favor llenar este campo
+		</span>
+
+		<input type="text" name="usuario" #usuario="ngModel" [(ngModel)] = "listaUsuarios.usuario" placeholder="Usuario" required>
+
+		<span *ngIf="password.touched && !password.valid" [ngStyle]="{'color':'red','font-size':'14px','margin':'20px'}">
+			*Favor llenar este campo
+		</span>
+
+		<input type="password" name="password" #password="ngModel" [(ngModel)] = "listaUsuarios.password" placeholder="Contraseña" required>
+
+		<input type="submit" placeholder="Enviar">
+
+		<div *ngIf="validarIngreso" style="text-align:center">
+			
+			<div style="color:red; margin-bottom:10px"> {{ mensaje }} </div>
+
+		</div>
+
+	</form>
+
+	<a [routerLink]="['/index']"> <button class="btn-frontend" >Regresar</button> </a>
+
+</section>
+
+<!--===========================================
+=            Backend			              =
+============================================-->
+
+<section *ngIf="identificado" id="backend">
+	
+	<div id="cabezote">
+		
+		<h3>Hola {{usuario}}</h3>
+
+		<button (click)="cerrarSesion()">Cerrar Sesión</button>
+
+		<a [routerLink]="['/index']"> <button class="btn-frontend" >Regresar</button> </a>
+
+	</div>
+
+	<hr>
+
+	<!--=====================================
+	SLIDESHOW  
+	======================================-->
+
+	<div class="gestores">
+		
+		<h1>Gestor SLIDESHOW</h1>
+
+		<form #formSlides="ngForm" (ngSubmit)="nuevoSlide()">
+			
+			<input type="text" placeholder="Título..." name="titulo" #titulo="ngModel" [(ngModel)]="itemSlides.titulo" required>
+
+			<textarea maxlength="55" placeholder="Descripción..." name="descripcion" #descripcion="ngModel" [(ngModel)]="itemSlides.descripcion" required></textarea>
+
+			<input type="file" (change)="cargarFichero($event)" required>
+
+			<input type="submit" value="Enviar">
+
+			<div *ngIf="validarIngreso" style="text-align:center">
+			
+				<div style="color:red; margin-bottom:10px"> {{ mensaje }} </div>
+
+			</div>
+
+		</form>
+
+	</div>
+
+	<tag-slide></tag-slide>
+
+	<!--=====================================
+	GALERIA 
+	======================================-->
+
+	<div class="gestores">
+		
+		<h1>Gestor GALERIA</h1>
+
+		<form #formGaleria="ngForm" (ngSubmit)="nuevaFotoGaleria()">
+			
+			<input type="file" (change)="cargarFichero($event)" required>
+
+			<input type="submit" value="Enviar">			
+
+		</form>
+
+	</div>
+	
+	<tag-galeria></tag-galeria>
+
+
+</section>

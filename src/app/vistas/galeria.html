@@ -1,0 +1,27 @@
+<h1 id="inicioGaleria" class="row titulos">
+		
+	<hr>
+
+		GALERÍA DE IMÁGENES
+
+	<hr>
+
+</h1>
+
+<div id="galeria" class="row"  *ngIf="galeriaJson">
+		
+	<ul>
+		<li *ngFor="let galeria of galeriaJson" class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+			
+			<img src="{{ url + galeria.foto }}">
+
+			<div *ngIf="identificado">
+				<i (click)="borrarFoto(galeria)" class="fa fa-trash" aria-hidden="true"></i>
+			</div>
+
+		</li>
+	</ul>
+
+</div>
+
+<span *ngIf="!galeriaJson">Cargando Galeria...</span>

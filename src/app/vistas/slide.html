@@ -1,0 +1,67 @@
+<div id="slide" class="row" *ngIf="slideJson">
+		
+	<ul>
+			
+		<li *ngFor="let slide of slideJson" >	
+
+			<img src="{{ url + '/tomar-imagen-slide/' + slide.imagen}}">
+
+			<div class="textoSlide">
+
+				<h1>{{slide.titulo}}</h1>
+
+				<h3>{{slide.descripcion}}</h3>
+
+			</div>
+
+			<div id="gestorSlide" *ngIf="identificado">
+				<i (click)="editarSlide(slide)" class="fa fa-pencil" aria-hidden="true"></i>
+				<i (click)="borrarSlide(slide)" class="fa fa-trash" aria-hidden="true"></i>
+			</div>
+			
+		</li>
+
+	</ul>
+
+	<ol id="paginacion">
+			
+		<li *ngFor="let slide of slideJson, let i=index" value="{{i+1}}"><span class="fa fa-circle"></span></li>
+
+	</ol>
+
+	<div class="flechas" id="retroceder"><span class="fa fa-chevron-left"></span></div>
+	<div class="flechas" id="avanzar"><span class="fa fa-chevron-right"></span></div>
+
+	<div class="gestores" *ngIf="formEditarSlide" style="position:absolute; background:rgba(0,0,0,.8); width:100%; height:100%; top:0px; left:0px; z-index:10">
+    
+     	<form #formSlide="ngForm" (ngSubmit)="actualizarSlide()" style="background:rgba(255,255,255,.5); padding:30px">
+      
+	        <input type="text" placeholder="Título..." name="titulo" #titulo="ngModel" [(ngModel)]="itemSlides.titulo" required>
+
+	        <textarea maxlength="55" placeholder="Descripción..." name="descripcion" #descripcion="ngModel" [(ngModel)]="itemSlides.descripcion" required></textarea>
+
+	        <div *ngIf="!cambiarImagen">
+
+	        	<img src="{{ url + '/tomar-imagen-slide/' + itemSlides.imagen }}" style="width:20%; margin:10px">
+
+	        	<br>
+
+				<button (click)="cambiarImagen=true" > Cambiar imagen </button>
+
+	        </div>
+
+	        <div *ngIf="cambiarImagen">
+	        	<input type="file" (change)="cargarFichero($event)" required>
+	        </div>
+
+	        <input  type="submit" value="Enviar">
+
+	        <button (click)="formEditarSlide=false" style="color:white; background:rgba(0,0,0,0); border:0px; font-size:24px; position:absolute; right:30px; top:30px; cursor:pointer" >X</button>
+
+     	</form>
+
+ 	</div>
+
+</div>
+
+<span *ngIf="!slideJson">Cargando Slide...</span>

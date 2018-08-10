@@ -1,0 +1,72 @@
+<h1 id="inicioFormulario" class="row titulos">
+		
+		<hr>
+
+		VALIDACIÓN FORMULARIO
+
+		<hr>
+
+	</h1>
+
+	<div id="formulario" class="row">
+		
+		<form method="post" onsubmit="return mf.validarFormulario()">
+			
+			<h1>Ingrese sus datos</h1>
+
+			<label for="nombre">Ingrese su usuario: <span class="obligatorio">*Campo Obligatorio</span></label>
+			<input id="nombre" class="validar" type="text" placeholder="Escriba su usuario con mínimo 2 caracteres, máximo 6 caracteres" required>
+
+			<label for="password">Ingrese su contraseña: <span class="obligatorio">*Campo Obligatorio</span></label>
+			<input id="password" class="validar" type="password" placeholder="Escriba su contraseña con mínimo 8 caracteres y debe incluir letras en mayúscula, en minúscula y números" maxlength="15" required>
+
+			<label for="email">Ingrese su correo electrónico: <span class="obligatorio">*Campo Obligatorio</span></label>
+			<input id="email" class="validar" type="email" placeholder="Escriba su correo correctamente" required>
+
+			<label for="color">Elija su color</label>
+			<select id="color">
+				<option>Seleccione</option>
+				<option>Amarillo</option>
+				<option>Rojo</option>
+				<option>Azul</option>
+			</select>
+
+			<br>
+
+			<hr>
+
+			<p>Seleccione Animal:</p>
+			<input type="checkbox" id="perro">
+			<label for="perro" class="box"><span></span>Perro</label>
+			<input type="checkbox" id="gato">
+			<label for="gato" class="box"><span></span>Gato</label>
+			<input type="checkbox" id="conejo">
+			<label for="conejo" class="box"><span></span>Conejo</label>
+
+			<hr>
+
+			<p>Seleccione forma de pago:</p>
+			<input type="radio" id="efectivo" name="pago" checked>
+			<label for="efectivo" class="radio"><span></span>Efectivo</label>
+			<input type="radio" id="credito" name="pago">
+			<label for="credito" class="radio"><span></span>Crédito</label>
+
+			<br>
+
+			<hr>
+
+			<label for="mensaje"></label>
+			<textarea id="mensaje" rows="10" required></textarea>
+
+			<input type="checkbox" id="terminos">
+			<label for="terminos" class="box"><span></span><a href="archivo.pdf" target="_blank">Acepto términos y condiciones</a></label>
+
+			
+			<label id="labelEnviar"></label>
+			<input type="submit" value="Enviar">
+
+			<br>
+
+		</form>
+
+	</div>
